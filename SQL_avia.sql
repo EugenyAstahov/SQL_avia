@@ -81,9 +81,8 @@ where bp.boarding_no is null
 --Так как работаем с двумя таблицами, используем join
 --Группируем данные по моделям самолетов 
  
-select
-a.model as "Модель самолета", 
-round(count(f.flight_id)*100::numeric/(select count(*) from flights f), 2)
+select a.model as "Модель самолета", 
+       round(count(f.flight_id)*100::numeric/(select count(*) from flights f), 2)
 from aircrafts a
 join flights f on f.aircraft_code = a.aircraft_code 
 group by a.model
